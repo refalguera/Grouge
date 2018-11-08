@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : MonoBehaviour {
+public class LaserController : MonoBehaviour {
 
     [SerializeField]
     private float _speed;
@@ -17,10 +17,10 @@ public class Laser : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         _speed = 6;
-        _spawn = GameObject.Find("Spawn_Manager").GetComponent<Spawn_Manager>();
+        _spawn = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
 	}
 	
-	// Update is called once per frame
+	//Controls laser movement
 	void Update () {
 
         if (_laserDirection)
@@ -37,26 +37,15 @@ public class Laser : MonoBehaviour {
         Destroy(this.gameObject, 2f);
     }
 
+	//Check laser bumps with other objects
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
         {
             GameObject enemy = collision.gameObject;
-            enemy.GetComponent<Enemy_Physics>().Perde_Vida();
+            enemy.GetComponent<Enemy_Controller>().Damage();
             Destroy(this.gameObject);
 
-        }
-        else if(collision.gameObject.tag == "Bloco")
-        {
-            if (collision.gameObject.name == "Bloco")
-            {
-                _spawn.BlocosDamage();
-            }
-            else if(collision.gameObject.name == "Bloco_2")
-            {
-                _spawn.Blocos_2_Damage();
-            }
-            Destroy(collision.gameObject);
         }
     }
 
