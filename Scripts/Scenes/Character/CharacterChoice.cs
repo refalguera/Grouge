@@ -7,6 +7,8 @@ public class CharacterChoice : MonoBehaviour {
     [HideInInspector]
     public bool stella, luis;
   
+    //After chosen the character is activated a boolean corresponds to the character and made the rendering to the screen of the first phase. 
+    //The object that loads the script is not destroyed so you know which character was selected for play
     private void Awake()
     {
         stella = false;
