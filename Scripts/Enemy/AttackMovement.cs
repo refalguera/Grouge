@@ -50,11 +50,11 @@ public class AttackMovement : MonoBehaviour
         {
             if (Mathf.Sign(target.position.x) == 1)
             {
-                _gosmprefab.GetComponent<Gosm>()._laserDirection = false;
+                _gosmprefab.GetComponent<GosmController>()._laserDirection = false;
             }
             else
             {
-                _gosmprefab.GetComponent<Gosm>()._laserDirection = true;
+                _gosmprefab.GetComponent<GosmController>()._laserDirection = true;
             }
 
             Instantiate(_gosmprefab, _shootposition.position, Quaternion.identity);
