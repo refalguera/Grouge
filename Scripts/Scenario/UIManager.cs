@@ -7,7 +7,7 @@ using System;
 public class UIManager : MonoBehaviour {
 
     [SerializeField]
-    private GameObject[] _capsulaScoreImage;
+    private GameObject[] _capsuleScoreImage;
 
     [SerializeField]
     private Sprite[] _lifeBarImage;
@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour {
     //Modifies the colors of the capsule particles present on the canvas
     public void ChangeColorCapsulesParticulesScore(int i)
     {
-        _capsulaScoreImage[i].GetComponent<Image>().material = _mymaterial;
+        _capsuleScoreImage[i].GetComponent<Image>().material = _mymaterial;
     }
 
     //Modify the number of lives image on the canvas
@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour {
 
         if (minutes != 10)
         {
-            _time.text = "Tempo : " + minutes.ToString() + ":" + seconds.ToString();
+            _time.text = "Time : " + minutes.ToString() + ":" + seconds.ToString();
         }
         else
         {
