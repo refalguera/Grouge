@@ -27,12 +27,13 @@ public class UIManager : MonoBehaviour {
 
     private GameManager _gamemanager;
    
-
-    public void ChangeColorCapsulasParticulesScore(int i)
+    //Modifies the colors of the capsule particles present on the canvas
+    public void ChangeColorCapsulesParticulesScore(int i)
     {
         _capsulaScoreImage[i].GetComponent<Image>().material = _mymaterial;
     }
 
+    //Modify the number of lives image on the canvas
     public void ChangeLifeBar(int _life)
     {
         if(_life <= 1)
@@ -47,6 +48,7 @@ public class UIManager : MonoBehaviour {
         }
     }
 
+    //Calculate playing time and show on canvas
     public void Timer()
     {
         minutes = (int)Time.time / 60;
