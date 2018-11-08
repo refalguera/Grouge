@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFisica : RayCastController {
+public class PlayerPhysics : RayCastController {
 
     public CollisionInfo collisions;
 
@@ -33,6 +33,7 @@ public class PlayerFisica : RayCastController {
     private UIManager _UIManager;
     public AudioClip _shieldsound;
 
+//Initializes components
     public override void Start()
     {
         base.Start();
@@ -46,12 +47,12 @@ public class PlayerFisica : RayCastController {
         _gameManager._capsuleCount = _capsulaCount;
     }
 
-
     public void Move(Vector3 velocity, bool standinonPlataform)
     {
         Move(velocity, Vector2.zero, standinonPlataform);
     }
 
+//Controls the movement of the player by analyzing vertical, horizontal collisions and ascents and decides on diagonal platforms.
     public void Move(Vector3 velocity, Vector2 input, bool standinonPlataform = false)
     {
         UpdateRayCastOrigins();
@@ -81,7 +82,7 @@ public class PlayerFisica : RayCastController {
        
         transform.Translate(velocity);
 
-        //Limitar o movimento do Player
+        // Limit Player movement based on camera position
 
         MovemmentBounds();
 
@@ -91,6 +92,7 @@ public class PlayerFisica : RayCastController {
         }
     }
 
+  //Controls vertical collisions
     void VerticalCollisions(ref Vector3 velocity)
     {
         float directionY = Mathf.Sign(velocity.y);
@@ -105,6 +107,8 @@ public class PlayerFisica : RayCastController {
 
             if (hit)
             {
+               //Player can climb from bottom to top on platforms with the tag Through. 
+               //If it rises on movable platforms it falls.
                 if (hit.collider.tag == "Through")
                 {
                     if (directionY == 1 || hit.distance == 0)
@@ -137,6 +141,8 @@ public class PlayerFisica : RayCastController {
             }
         }
 
+     //Controls climb collisions
+
         if (collisions.climbSlope)
         {
             float directionX = Mathf.Sign(velocity.x);
@@ -157,6 +163,7 @@ public class PlayerFisica : RayCastController {
 
     }
 
+    //Controls horizontal collisions
     void HorizontalCollisions(ref Vector3 velocity)
     {
         float directionX = collisions.faceDirection;
@@ -174,7 +181,8 @@ public class PlayerFisica : RayCastController {
             RaycastHit2D hit = Physics2D.Raycast(rayorigin, Vector2.right * directionX, rayLegth, collisionMask);
 
             Debug.DrawRay(rayorigin, Vector2.right * directionX * rayLegth * 8, Color.red);
-
+               
+               //If there was a collision, it verifies with what object it had and performs a given action
             if (hit)
             {
                 if (hit.collider.gameObject.tag == "Flag")
@@ -259,6 +267,7 @@ public class PlayerFisica : RayCastController {
 
     }
 
+//Controls diagonal rises
     void ClimbSlope(ref Vector3 velocity, float diagonalangle)
     {
         float moveDistance = Mathf.Abs(velocity.x);
@@ -273,6 +282,7 @@ public class PlayerFisica : RayCastController {
         }
     }
 
+//Controlling descending diagonally
     void DescendSlope(ref Vector3 velocity)
     {
         float directionX = Mathf.Sign(velocity.x);
