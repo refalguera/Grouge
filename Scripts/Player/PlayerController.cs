@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
-    PlayerFisica _controller;
+    PlayerPhysics _controller;
     Animator _anim;
 
     private float _gravity;
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
 
     private GameManager _gameManager;
     private UIManager _UIManager;
-    private Spawn_Manager _spawnManager;
+    private SpawnManager _spawnManager;
     private AudioSource _lasersound;
 
     // Use this for initialization
@@ -61,10 +61,12 @@ public class Player : MonoBehaviour {
 
         Inicializate_PlayerComponents();
         _anim = GetComponent<Animator>();
-        _controller = GetComponent<PlayerFisica>();
+        _controller = GetComponent<PlayerPhysics>();
 	}
 
 
+//Initialize components, and calculate the severity.
+//From this I calculate the maximum and minimum value that the player can skip.
     private void Inicializate_PlayerComponents()
     {
         _gravity = -(2 * maxjumpHeight) / Mathf.Pow(timetoJumpApex, 2);
@@ -97,7 +99,8 @@ public class Player : MonoBehaviour {
 
         Movemment();
     }
-
+    
+//Controls the player's movement
     private void Movemment()
     {
         if(_controller.collisions.faceDirection == -1 && _facingright)
@@ -127,6 +130,7 @@ public class Player : MonoBehaviour {
        }
     }
 
+//Controls the launch of the laser
     private void LaserShoot()
     {
 
@@ -141,6 +145,7 @@ public class Player : MonoBehaviour {
 
     }
 
+//Controls the damage done to the player
     public void Damage()
     {
         if (!_shieldAtive)
@@ -155,7 +160,7 @@ public class Player : MonoBehaviour {
             }
         }
     }
-    //Muda a direção das animações (direita e esquerda);
+   // Change the direction of the animations (right and left);
     private void flip()
     {
         _facingright = !_facingright;
