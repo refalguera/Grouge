@@ -18,7 +18,7 @@ public class GosmController : MonoBehaviour {
         _speed = 6;
     }
 
-    // Update is called once per frame
+    //Control the movement of the weapon
     void Update()
     {
 
@@ -34,7 +34,8 @@ public class GosmController : MonoBehaviour {
             transform.Translate(Vector3.left * _speed * Time.deltaTime);
         }
     }
-
+    
+//Check weapon collisions with objects
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
