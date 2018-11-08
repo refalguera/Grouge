@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuButton : MonoBehaviour {
+public class MenuController : MonoBehaviour {
 
     private AudioSource _buttonsound;
 
