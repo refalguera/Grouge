@@ -104,7 +104,7 @@ public class PlataformController : RayCastController {
         }
     }
 
-    // Função que trabalha com qualquer objeto que foi afetado pelo movimento da plataforma (que esta sendo; foi movimentado pela plataforma);
+// Function that works with any object that was affected by the movement of the platform (that is being moved by the platform);   
     void CalculatePassengersMovement(Vector3 velocity)
     {
         HashSet<Transform> movedPassengers = new HashSet<Transform>();
@@ -113,8 +113,7 @@ public class PlataformController : RayCastController {
         float directionX = Mathf.Sign(velocity.x);
         float directionY = Mathf.Sign(velocity.y);
 
-        // Moviemnto Vertical da plataforma
-
+       // Controls vertical collisions of the platform.
         if (velocity.y != 0)
         {
             float rayLegth = Mathf.Abs(velocity.y) + skinWidth;
@@ -125,7 +124,7 @@ public class PlataformController : RayCastController {
                 rayorigin += Vector2.right * (verticalRaySpacing * i);
                 RaycastHit2D hit = Physics2D.Raycast(rayorigin, Vector2.up * directionY, rayLegth, passengerMask);
                
-
+                      // If a collision with an object controls the movement of the same along the platform
                 if (hit && hit.distance != 0)
                 {
                     //Cada passageiro sera movido somente uma vez a cada frame
@@ -141,7 +140,7 @@ public class PlataformController : RayCastController {
             }
         }
 
-        // Moviemnto Horizontal
+        // Controls horizontal collisions of the platform.
         if (velocity.x != 0)
         {
             float rayLegth = Mathf.Abs(velocity.x) + skinWidth;
@@ -151,9 +150,8 @@ public class PlataformController : RayCastController {
                 Vector2 rayorigin = (directionX == -1) ? rayCastOrigin.bottomLeft : rayCastOrigin.bottomRight;
                 rayorigin += Vector2.up * (horizontalRaySpacing * i);
                 RaycastHit2D hit = Physics2D.Raycast(rayorigin, Vector2.right * directionX, rayLegth, passengerMask);
-
-               
-
+             
+                // If a collision with an object controls the movement of the same along the platform
                 if (hit && hit.distance !=0)
                 {
                     //Cada passageiro sera movido somente uma vez a cada frame
@@ -169,7 +167,7 @@ public class PlataformController : RayCastController {
             }
         }
 
-        // Passageiro está em cima ou embaixo da plataforma
+        //Checks whether a given object is "passenger" is above or below the platform
           if(directionY == -1 || velocity.y == 0 && velocity.x !=0)
         {
             float rayLegth = skinWidth * 2;
@@ -195,6 +193,7 @@ public class PlataformController : RayCastController {
         }
     }
 
+    //Controls the movement of the passenger
     struct PassengersMovement
     {
         public Transform transform;
