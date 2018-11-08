@@ -10,19 +10,13 @@ public class AttackMovement : MonoBehaviour
 
     public AudioClip _gosmsound;
 
-    //Magic Attack 
-    // Prefab da magia que será usada pelo inimigo;
+  // Prefab of the magic that will be used by the enemy;
     [SerializeField]
     private GameObject _gosmprefab;
 
     [SerializeField]
     private Transform _shootposition;
-
-    //Posição que a magia será lançada;
-    //Será lançada na posição das mãos do inimigo;
-    public GameObject position_Left;
-    public GameObject position_Right;
-
+    
     private float _FireRate = 2f;
     private float CanFire = 0.0f;
 
@@ -31,6 +25,7 @@ public class AttackMovement : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
+// Pursue the player if the distance between the two is less than the stopping distance
     public void LateUpdate()
     {
         if (target != null)
@@ -47,6 +42,8 @@ public class AttackMovement : MonoBehaviour
             }
         }
     }
+    
+    // Control the launch of the enemy's weapon
     void GosmShoot()
     {
         if (Time.time > CanFire)
