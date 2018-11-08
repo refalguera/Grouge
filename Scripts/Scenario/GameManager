@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private GameObject _stellaPrefab;
-
     [SerializeField]
     private GameObject _luisPrefab;
 
@@ -32,6 +31,24 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private GameObject _spawnManager;
 
+    private void Awake()
+    {
+        CharacterChoice _choice = GameObject.Find("CharacterChoice").GetComponent<CharacterChoice>();
+
+         if(_choice!= null)
+        {
+             if(_choice.stella)
+            {
+                _stellaPrefab.SetActive(true);
+            }
+             else if (_choice.luis)
+            {
+                _luisPrefab.SetActive(true);
+            }
+        }
+
+        ActivateObjects();
+    }
     private void Start()
     {
         _UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
@@ -72,31 +89,21 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void ChoiceCharacterStella()
+    private void ActivateObjects()
     {
-        _stellaPrefab.SetActive(true);
-        _UIManager.HideCharacterChoice();
-        AtivaCamera();
-        AtivaGestureFinder();
+        AtivateCamera();
+        AtivateGestureFinder();
     }
-
-    public void ChoiceCharacterLuis()
-    {
-        _luisPrefab.SetActive(true);
-        _UIManager.HideCharacterChoice();
-        AtivaCamera();
-        AtivaGestureFinder();
-    }
-
-    private void AtivaCamera()
+    private void AtivateCamera()
     {
         _spawnManager.GetComponent<SpawnManager>().enabled = true;
         _cameraMovemment.GetComponent<CameraMovemment>().enabled = true;
     }
 
-    private void AtivaGestureFinder()
+    private void AtivateGestureFinder()
     {
         _BodySourceManager.GetComponent<BodySourceManager>().enabled = true;
         _CustomGestureManager.GetComponent<CustomGestureManager>().enabled = true;
     }
 }
+
