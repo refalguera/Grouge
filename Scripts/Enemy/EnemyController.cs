@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController_V2 : RayCastController
+public class EnemyController : RayCastController
 {
     CollisionInfo _collisions;
 
