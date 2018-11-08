@@ -62,26 +62,25 @@ public class GameManager : MonoBehaviour {
     {
         if (startgame == true)
         {
-            //Começar jogo
-            //colocar todos os ui;
-            //Se deu gameover, para o jogo
-
+            //Start the game
+         
             if (gameover == false)
             {
+                //As the game occurs the time is counted
                 _UIManager.Timer();
             }
             else if (gameover == true)
             {
-                if (_capsuleCount == 8)
+                //If you finish the game, it is analyzed how many capsules were captured, if it was 9, the player wins. 
+                //Otherwise lose.
+                if (_capsuleCount == 9)
                 {
-                    //Jogador Ganhou
-                    //Exibir tela de vencedor
+                  // Display winner screen
                     Application.LoadLevel(3);
                 }
                 else
                 {
-                    //Jogador perdeu 
-                    //Exibir tela
+                   // Display gameover screen
                     Application.LoadLevel(2);
                 }
             }
@@ -89,11 +88,13 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    // Activate camera movement, spawn objects and the AI scripts
     private void ActivateObjects()
     {
         AtivateCamera();
         AtivateGestureFinder();
     }
+    
     private void AtivateCamera()
     {
         _spawnManager.GetComponent<SpawnManager>().enabled = true;
