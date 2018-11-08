@@ -1,0 +1,74 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using System;
+
+public class UIManager : MonoBehaviour {
+
+    [SerializeField]
+    private GameObject _escolhaPersonagem;
+    
+    [SerializeField]
+    private GameObject[] _capsulaScoreImage;
+
+    [SerializeField]
+    private Sprite[] _lifeBarImage;
+
+    public GameObject life;
+
+    [SerializeField]
+    private Material _mymaterial;
+
+    [SerializeField]
+    private Text _time;
+
+    [HideInInspector]
+    public int minutes;
+    [HideInInspector]
+    public int seconds;
+
+    private GameManager _gamemanager;
+   
+
+    public void ChangeColorCapsulasParticulesScore(int i)
+    {
+        _capsulaScoreImage[i].GetComponent<SpriteRenderer>().material = _mymaterial;
+    }
+
+    public void ChangeLifeBar(int _life)
+    {
+        if(_life <= 1)
+        {
+            life.GetComponent<Image>().sprite = _lifeBarImage[_life];
+        }
+        else
+        {
+            life.GetComponent<Image>().sprite = _lifeBarImage[_life];
+            _gamemanager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            _gamemanager.gameover = true;
+        }
+    }
+
+    public void HideCharacterChoice()
+    {
+        _escolhaPersonagem.SetActive(false);
+    }
+
+    public void Timer()
+    {
+        minutes = (int)Time.time / 60;
+        seconds = (int)Time.time % 60;
+
+        if (minutes != 10)
+        {
+            _time.text = "Tempo : " + minutes.ToString() + ":" + seconds.ToString();
+        }
+        else
+        {
+            _gamemanager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            _gamemanager.gameover = true;
+        }
+    }
+
+}
