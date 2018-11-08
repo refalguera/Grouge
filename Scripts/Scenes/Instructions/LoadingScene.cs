@@ -10,6 +10,7 @@ public class LoadingScene : MonoBehaviour {
         StartCoroutine(LoadingScene());
 	}
 	
+   //The instruction screen stays for 10 seconds. After this time the rendering is done for the character selection screen
 	IEnumerator LoadingScene()
     {
         yield return new WaitForSeconds(10f);
