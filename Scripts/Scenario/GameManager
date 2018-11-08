@@ -1,0 +1,102 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GameManager : MonoBehaviour {
+
+    [HideInInspector]
+    public bool gameover;
+
+    [HideInInspector]
+    public bool startgame;
+
+    [HideInInspector]
+    public int _capsuleCount;
+
+    [SerializeField]
+    private GameObject _stellaPrefab;
+
+    [SerializeField]
+    private GameObject _luisPrefab;
+
+    private UIManager _UIManager;
+    [SerializeField]
+    private GameObject _BodySourceManager;
+    [SerializeField]
+    private GameObject _CustomGestureManager;
+
+    [SerializeField]
+    private Camera _cameraMovemment;
+
+    [SerializeField]
+    private GameObject _spawnManager;
+
+    private void Start()
+    {
+        _UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+       
+
+        gameover = false;
+        startgame = false;
+    }
+    
+    public void Update()
+    {
+        if (startgame == true)
+        {
+            //Começar jogo
+            //colocar todos os ui;
+            //Se deu gameover, para o jogo
+
+            if (gameover == false)
+            {
+                _UIManager.Timer();
+            }
+            else if (gameover == true)
+            {
+                if (_capsuleCount == 8)
+                {
+                    //Jogador Ganhou
+                    //Exibir tela de vencedor
+                    Application.LoadLevel(3);
+                }
+                else
+                {
+                    //Jogador perdeu 
+                    //Exibir tela
+                    Application.LoadLevel(2);
+                }
+            }
+      
+        }
+    }
+
+    public void ChoiceCharacterStella()
+    {
+        _stellaPrefab.SetActive(true);
+        _UIManager.HideCharacterChoice();
+        AtivaCamera();
+        AtivaGestureFinder();
+    }
+
+    public void ChoiceCharacterLuis()
+    {
+        _luisPrefab.SetActive(true);
+        _UIManager.HideCharacterChoice();
+        AtivaCamera();
+        AtivaGestureFinder();
+    }
+
+    private void AtivaCamera()
+    {
+        _spawnManager.GetComponent<SpawnManager>().enabled = true;
+        _cameraMovemment.GetComponent<CameraMovemment>().enabled = true;
+    }
+
+    private void AtivaGestureFinder()
+    {
+        _BodySourceManager.GetComponent<BodySourceManager>().enabled = true;
+        _CustomGestureManager.GetComponent<CustomGestureManager>().enabled = true;
+    }
+}
