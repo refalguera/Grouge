@@ -18,6 +18,7 @@ public class WallController : MonoBehaviour
 
     }
 
+    //Controls the movement of the platform from one point to another point
     private void Update()
     {
         _plataform.position = Vector3.MoveTowards(_plataform.position, _destinypoint, speed * Time.deltaTime);
