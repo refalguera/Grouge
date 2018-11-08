@@ -7,9 +7,6 @@ using System;
 public class UIManager : MonoBehaviour {
 
     [SerializeField]
-    private GameObject _escolhaPersonagem;
-    
-    [SerializeField]
     private GameObject[] _capsulaScoreImage;
 
     [SerializeField]
@@ -33,7 +30,7 @@ public class UIManager : MonoBehaviour {
 
     public void ChangeColorCapsulasParticulesScore(int i)
     {
-        _capsulaScoreImage[i].GetComponent<SpriteRenderer>().material = _mymaterial;
+        _capsulaScoreImage[i].GetComponent<Image>().material = _mymaterial;
     }
 
     public void ChangeLifeBar(int _life)
@@ -48,11 +45,6 @@ public class UIManager : MonoBehaviour {
             _gamemanager = GameObject.Find("GameManager").GetComponent<GameManager>();
             _gamemanager.gameover = true;
         }
-    }
-
-    public void HideCharacterChoice()
-    {
-        _escolhaPersonagem.SetActive(false);
     }
 
     public void Timer()
