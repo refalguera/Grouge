@@ -6,15 +6,15 @@ HISTORY: The game takes place in a city called Galactica, whose life is maintain
 
 HOW IT WORKS: The actions of the character in the game are made only with specific physiotherapeutic movements, related to the deficiencies: Cerebral Palsy, Ataxia and Plexus-Brachial Injury. For each movement there is a specific action. These movements are captured via Kinect, sent to an AI that verifies if the patient has performed the correct movement. If so, AI notifies the Game to activate the action that is being taken.
 
-                                    MENU PRINCIPAL (MENU)
+                                    MENU
 ![alt text](https://github.com/refalguera/Grouge/blob/master/ImagesOfTheFinalVersion/Menu.png)
 
-                            TELA DE INSTRUÇÕES (INSTRUCTION SCREEN)
+                            INSTRUCTION SCREEN
 ![alt text](https://github.com/refalguera/Grouge/blob/master/ImagesOfTheFinalVersion/Instrucao.png)
 
-                      TELA DE SELEÇÃO DE PERSONAGEM (CHARACTER SELECTION SCREEN)
+                     CHARACTER SELECTION SCREEN
 ![alt text](https://github.com/refalguera/Grouge/blob/master/ImagesOfTheFinalVersion/Personagens.png)
 
-                      TELA DA PRIMEIRA FASE (FIRST PHASE SCREEN)
+                      FIRST PHASE SCREEN
 ![alt text](https://github.com/refalguera/Grouge/blob/master/ImagesOfTheFinalVersion/Fase1.png)
 
